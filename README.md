@@ -127,3 +127,29 @@ MEPInstant.initializeAsync().then(() => {
   })
 })
 ```
+
+### How to load bundle
+<img src="./resources/load_bundle.jpg"> <img>
+ ```javascript
+let bundleName = 'magictileExtends'
+cc.assetManager.loadBundle(bundleName, (err:Error, bundle: cc.AssetManager.Bundle) => { 
+  
+  //TODO process error
+  if(err) {
+    console.error(err.stack)
+    return;
+  }
+
+  // load the prefab (${project}/assets/mt3extend/prefabList/star) from prefabList folder
+  bundle.load('prefabList/star', cc.Prefab, (err:Error, prefab) => {
+    //TODO process error
+    if(err) {
+      console.error(err.stack)
+      return;
+    }
+
+    //TODO process prefab 
+    let node = cc.instantiate(prefab);
+  });
+}
+```
