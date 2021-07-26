@@ -153,3 +153,28 @@ cc.assetManager.loadBundle(bundleName, (err:Error, bundle: cc.AssetManager.Bundl
   });
 }
 ```
+
+### How to use local game save
+```javascript
+var data = {
+  loading: true,
+  c184334d-81ed-4608-8471-7d42024a22d1: {
+    songId:"c184334d-81ed-4608-8471-7d42024a22d1"
+    score: 100,
+    star: 3,
+    crown: 1 
+  }
+} 
+MEPInstant.setGameDataAsync(data).then(() => {
+ console.log("setGameDataAsync is sucessfully")
+}).catch({err=>{
+  console.error(err.message)
+})
+
+MEPInstant.getGameDataAsync().then((data:Object) => {
+  console.log(data) // print object
+  if(data && typeof data.loading !== 'undefined') {
+    console.log(data.loading) // true
+  }
+});
+```
